@@ -1,0 +1,63 @@
+nav {
+    display: flex;
+    justify-content: flex-end;
+    background-color: orange;
+    align-items: center;
+    padding-right:20px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    gap: 20px;
+}
+
+nav button {
+    margin: 5px;
+    background-color: black;
+    border: none;
+    color: white;
+    cursor: pointer;
+    font-size: 16px;
+}
+nav button:hover {
+    text-decoration: underline;
+}
+
+.cart-btn, .userIcon {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    position: relative;
+}
+nav a svg{
+    fill: blue;
+    height: 30px;
+}
+
+.cart-icon, .userIcon {
+    width: 30px;
+    height: auto;
+}
+
+.cart-icon-css {
+    background-color: greenyellow;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 30px;
+    color: black;
+    font-size: 14px;
+    position: relative;
+    top: -13px;
+    right: 8px;
+}
+
+.user-icon {
+    width: 30px;
+    height: auto;
+    border-radius: 50%;
+    fill: white;
+}
+ul.navbar-nav.ms-auto{
+    align-items: baseline;
+}
