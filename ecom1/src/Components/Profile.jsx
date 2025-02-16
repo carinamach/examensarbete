@@ -1,30 +1,9 @@
-import React, { useEffect, useState } from 'react'
 import Navbar from './Navbar'
-import { collection, getDocs, query, where } from 'firebase/firestore'
-import { auth, db } from '../FirebaseConfigs/firebaseConfig'
+import { useUser } from './UserAuthContext';
+import { Link } from 'react-router-dom';
 
 const Profile = () => {
-  function GetCurrentUser() {
-    const [user, setUser] = useState('')
-    const usersCollectionRef = collection(db, "users")
-    useEffect(() => {
-        auth.onAuthStateChanged(userlogged => {
-            if (userlogged) {
-                const getUsers = async () => {
-                    const q = query(usersCollectionRef, where("uid", "==", userlogged.uid))
-                    const data = await getDocs(q)
-                    setUser (data.docs.map((doc)=>({...doc.data(), id:doc.id})))
-                }                
-                getUsers();
-            }
-            else{
-                setUser(null)
-            }
-        })
-    },[])
-    return user
-}
-const loggeduser= GetCurrentUser(); 
+  const loggeduser = useUser();
 
   return (
     <div>
@@ -53,10 +32,9 @@ const loggeduser= GetCurrentUser();
             </div>
           </div>
         ) : (
-          <div>
-            {setTimeout(() => {
-              return <h1>Logga in för att se din profil</h1>
-            }, 3000)}
+          <div className="text-center p-4">
+            <h1>Logga in för att se din profil</h1>
+            <Link to="/login" className="btn btn-primary mt-3">Gå till inloggning</Link>
           </div>
         )}
       </div>

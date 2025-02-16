@@ -1,39 +1,17 @@
 import { Link, useNavigate } from 'react-router-dom';
-import { useState, useEffect } from 'react';
-import { auth, db } from '../FirebaseConfigs/firebaseConfig';
-import { collection, getDocs, query, where } from 'firebase/firestore';
-
+import { useUser } from './UserAuthContext';
+import { auth } from '../FirebaseConfigs/firebaseConfig';
 import './styles/Navbar.css'
 
 const Navbar = () => {
-  function GetCurrentUser() {
-    const [user, setUser] = useState('')
-    const usersCollectionRef = collection(db, "users")
-    useEffect(() => {
-      auth.onAuthStateChanged(userlogged => {
-        if (userlogged) {
-          const getUsers = async () => {
-            const q = query(usersCollectionRef, where("uid", "==", userlogged.uid))
-            const data = await getDocs(q)
-            setUser(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })))
-          }
-          getUsers();
-        }
-        else {
-          setUser(null)
-        }
-      })
-    }, [])
-    return user
-  }
-  const loggeduser = GetCurrentUser();
-  
-const navigate = useNavigate();
-const handleLogout = () => {
-  auth.signOut().then(() => {
-    navigate('/login');
-  });
-};
+  const loggeduser = useUser();
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    auth.signOut().then(() => {
+      navigate('/login');
+    });
+  };
 
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-light shadow-sm p-3">
@@ -47,7 +25,10 @@ const handleLogout = () => {
         <div className="collapse navbar-collapse" id="navbarNav">
           <ul className="navbar-nav ms-auto">
             <li className="nav-item">
-              <p className="nav-link text-black"><strong>Hej {loggeduser ? loggeduser[0].username || loggeduser[0].email : ""}!</strong></p>
+              <p className="nav-link text-black"><strong>{loggeduser ? `Hej ${loggeduser[0].username || loggeduser[0].email}!` : 'Hej!'}</strong></p>
+            </li>
+            <li className="nav-item">
+              <Link to="/allProducts" className="nav-link">All Products</Link>
             </li>
             {!loggeduser && (
               <>
@@ -78,9 +59,11 @@ const handleLogout = () => {
             </li>
             {loggeduser && (
               <>
-                <li className="nav-item">
-                  <Link to="/addProduct" className="nav-link">Add Product</Link>
-                </li>
+                {loggeduser[0].email === "admin@admin.se" && (
+                  <li className="nav-item">
+                    <Link to="/addProduct" className="nav-link">Add Product</Link>
+                  </li>
+                )}
                 <li className="nav-item">
                   <button onClick={handleLogout} className="nav-link">
                     Logout
@@ -94,6 +77,5 @@ const handleLogout = () => {
     </nav>
   );
 }
-
 
 export default Navbar;
