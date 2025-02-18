@@ -28,7 +28,7 @@ const Navbar = () => {
               <p className="nav-link text-black"><strong>{loggeduser ? `Hej ${loggeduser[0].username || loggeduser[0].email}!` : 'Hej!'}</strong></p>
             </li>
             <li className="nav-item">
-              <Link to="/allProducts" className="nav-link">All Products</Link>
+              <Link to="/products" className="nav-link">All Products</Link>
             </li>
             {!loggeduser && (
               <>
