@@ -10,6 +10,7 @@ import AddProduct from './Components/AddProduct';
 import { UserAuthProvider } from './Components/UserAuthContext';
 import Products from './Components/Products';
 import Product from './Components/Product';
+import FeaturedProducts from './Components/FeaturedProducts';
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
           <Route exact path="*" element = {<FofPage/>}/>
           <Route exact path="/products" element = {<Products/>}/>
           <Route exact path="/product/:id" element = {<Product/>}/>
+          <Route exact path="/featuredProducts" element = {<FeaturedProducts/>}/>
         </Routes>
       </BrowserRouter>
     </UserAuthProvider>

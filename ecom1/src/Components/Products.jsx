@@ -1,14 +1,16 @@
 // Importera nödvändiga hooks och Firebase-funktioner
 import { useState, useEffect } from 'react';
 import { db } from '../FirebaseConfigs/firebaseConfig';
-import { collection, query, getDocs } from 'firebase/firestore';
+import { collection, query, getDocs, doc, updateDoc } from 'firebase/firestore';
 import { Link } from 'react-router-dom';
 import Navbar from './Navbar';
+
 const Products = () => {
   // State för att hantera produkter, laddning och fel
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [loggeduser, setLoggeduser] = useState(null);
 
   useEffect(() => {
     // Funktion för att hämta produkter från Firestore
@@ -38,7 +40,9 @@ const Products = () => {
     // Anropa fetchProducts när komponenten mountas
     fetchProducts();  
   }, []); 
-  
+
+
+
   return (
     <div>
       <Navbar />
@@ -70,6 +74,9 @@ const Products = () => {
                     </p>
                   </div>
                 </Link>
+                <button>
+                  Lägg till i kundvagn
+                </button>
               </div>
             </div>
           ))}
