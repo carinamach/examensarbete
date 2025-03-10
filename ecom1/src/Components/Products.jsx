@@ -4,17 +4,20 @@ import { db } from '../FirebaseConfigs/firebaseConfig';
 import { collection, query, getDocs, doc, updateDoc } from 'firebase/firestore';
 import { Link } from 'react-router-dom';
 import Navbar from './Navbar';
+import { addToCart } from './cartFunctions';
+import { useUser } from './UseUser';
+
 
 const Products = () => {
   // State för att hantera produkter, laddning och fel
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [loggeduser, setLoggeduser] = useState(null);
+  const loggeduser = useUser();
 
   useEffect(() => {
     // Funktion för att hämta produkter från Firestore
-    const fetchProducts = async () => { 
+    const fetchProducts = async () => {
       try {
         // Skapa query för products-collection
         const snapshot = query(collection(db, 'products'));
@@ -22,7 +25,7 @@ const Products = () => {
         const docs = await getDocs(snapshot);
         const productsList = [];
         // Loopa igenom dokumenten och lägg till i array
-        docs.forEach((doc) => { 
+        docs.forEach((doc) => {
           productsList.push({
             id: doc.id,
             ...doc.data()
@@ -38,8 +41,8 @@ const Products = () => {
       }
     };
     // Anropa fetchProducts när komponenten mountas
-    fetchProducts();  
-  }, []); 
+    fetchProducts();
+  }, []);
 
 
 
@@ -48,9 +51,7 @@ const Products = () => {
       <Navbar />
       <div className='container'>
         <h1>Products</h1>
-        {/* Visa laddningsmeddelande medan data hämtas */}
-        {loading && <div>Loading...</div>}
-        {/* Visa felmeddelande om något gick fel */}
+        {loading && <div>Laddar...</div>}
         {error && <div>Error: {error.message}</div>}
         <div className='row'>
           {/* Loopa igenom och visa alla produkter */}
@@ -58,11 +59,11 @@ const Products = () => {
             <div className='col-md-4 mb-4' key={product.id}>
               <div className='card h-100'>
                 <Link to={`/product/${product.id}`} className="text-decoration-none">
-                  <img 
-                    src={product.productImage} 
-                    alt={product.title} 
-                    className="card-img-top" 
-                    style={{height: "200px", objectFit: "cover"}} 
+                  <img
+                    src={product.productImage}
+                    alt={product.title}
+                    className="card-img-top"
+                    style={{ height: "200px", objectFit: "cover" }}
                   />
                   <div className="card-body d-flex flex-column">
                     <h5 className="card-title text-dark">{product.title}</h5>
@@ -74,7 +75,7 @@ const Products = () => {
                     </p>
                   </div>
                 </Link>
-                <button>
+                <button className="btn btn-primary" onClick={() => addToCart(loggeduser, product)}>
                   Lägg till i kundvagn
                 </button>
               </div>

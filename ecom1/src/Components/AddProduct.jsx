@@ -1,6 +1,6 @@
 // Importera nödvändiga komponenter och funktioner
 import Navbar from './Navbar'
-import { useUser } from './UserAuthContext';
+import { useUser } from './UseUser';
 import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
 import { storage, db } from '../FirebaseConfigs/firebaseConfig';
 import { useState } from 'react';
@@ -31,6 +31,9 @@ const AddProduct = () => {
   // Konstanter för bildvalidering
   const allowedImageTypes = ['image/png', 'image/jpeg', 'image/jpg', 'image/webp'];
   const maxImageSize = 5 * 1024 * 1024; // 5MB
+
+  // Ny state för antal produkter
+  const [productCount, setProductCount] = useState(1);
 
   // Hantera ändringar i textfält
   const handleInputChange = (e) => {
@@ -124,6 +127,14 @@ const AddProduct = () => {
     }
   };
 
+  const increaseCount = () => {
+    setProductCount(prevCount => prevCount + 1);
+  };
+
+  const decreaseCount = () => {
+    setProductCount(prevCount => (prevCount > 1 ? prevCount - 1 : 1)); // Förhindra att gå under 1
+  };
+
   return (
     <div>
       <Navbar />
@@ -157,6 +168,16 @@ const AddProduct = () => {
               <div className="form-group">
                 <input type="file" className="form-control" onChange={handleImageUpload} accept={allowedImageTypes.join(',')} required />
               </div>
+
+              {/* Formulärfält för antal produkter
+              <div className="form-group">
+                <label>Antal produkter</label>
+                <div className="d-flex align-items-center">
+                    <button type="button" className="btn btn-secondary" onClick={decreaseCount}>-</button>
+                    <input type="number" className="form-control mx-2" value={productCount} readOnly />
+                    <button type="button" className="btn btn-secondary" onClick={increaseCount}>+</button>
+                </div>
+              </div> */}
 
               {/* Submit-knapp */}
               <button type="submit" className="btn btn-primary" disabled={isSubmitting}>{isSubmitting ? 'Lägger till...' : 'Lägg till produkt'}</button>

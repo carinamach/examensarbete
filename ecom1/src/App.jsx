@@ -11,7 +11,8 @@ import { UserAuthProvider } from './Components/UserAuthContext';
 import Products from './Components/Products';
 import Product from './Components/Product';
 import FeaturedProducts from './Components/FeaturedProducts';
-
+import Checkout from './Components/CheckOut';
+import AboutUs from './Components/AboutUs';
 function App() {
   return (
     <UserAuthProvider>  
@@ -28,6 +29,8 @@ function App() {
           <Route exact path="/products" element = {<Products/>}/>
           <Route exact path="/product/:id" element = {<Product/>}/>
           <Route exact path="/featuredProducts" element = {<FeaturedProducts/>}/>
+          <Route exact path="/checkout" element={<Checkout />} />
+          <Route exact path="/about-us" element={<AboutUs />} />
         </Routes>
       </BrowserRouter>
     </UserAuthProvider>

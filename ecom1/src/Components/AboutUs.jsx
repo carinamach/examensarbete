@@ -2,7 +2,7 @@ import Navbar from './Navbar'
 import FeaturedProducts from './FeaturedProducts'
 import { useUser } from './UseUser';
     
-const Home = () => {
+const AboutUs = () => {
     const loggeduser = useUser();
 
     return (
@@ -10,13 +10,11 @@ const Home = () => {
             <Navbar />
             <div className="container mt-4">
                 <div className="jumbotron text-center">
-                    <h1>Välkommen till vår butik</h1>
-                    <p className="lead">Upptäck våra senaste produkter</p>
+                    <h1>om oss</h1>
                 </div>
-                <FeaturedProducts />
             </div>
         </div>
     )
 }
 
-export default Home
+export default AboutUs

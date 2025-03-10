@@ -1,11 +1,23 @@
 import { Link, useNavigate } from 'react-router-dom';
-import { useUser } from './UserAuthContext';
+import { useEffect, useState } from 'react';
+import { useUser } from './UseUser';
 import { auth } from '../FirebaseConfigs/firebaseConfig';
-import './styles/Navbar.css'
+import './styles/Navbar.css';
 
 const Navbar = () => {
   const loggeduser = useUser();
   const navigate = useNavigate();
+  const [cartCount, setCartCount] = useState(0);
+
+
+  
+  useEffect(() => {
+    if (loggeduser && loggeduser[0].cart) {
+      // Summera alla quantity-värden i kundvagnen
+      const totalQuantity = loggeduser[0].cart.reduce((total, item) => total + item.quantity, 0);
+      setCartCount(totalQuantity);
+    }
+  }, [loggeduser]); // Uppdateras när `loggeduser` ändras
 
   const handleLogout = () => {
     auth.signOut().then(() => {
@@ -28,12 +40,15 @@ const Navbar = () => {
               <p className="nav-link text-black"><strong>{loggeduser ? `Hej ${loggeduser[0].username || loggeduser[0].email}!` : 'Hej!'}</strong></p>
             </li>
             <li className="nav-item">
-              <Link to="/products" className="nav-link">All Products</Link>
+              <Link to="/products" className="nav-link">Alla Produkter</Link>
+            </li> 
+            <li className="nav-item">
+              <Link to="/about-us" className="nav-link">Om Oss</Link>
             </li>
             {!loggeduser && (
               <>
                 <li className="nav-item">
-                  <Link to="/signup" className="nav-link">Register</Link>
+                  <Link to="/signup" className="nav-link">Registrera</Link>
                 </li>
                 <li className="nav-item">
                   <Link to="/login" className="nav-link">Login</Link>
@@ -45,9 +60,11 @@ const Navbar = () => {
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
                   <path d="M0 24C0 10.7 10.7 0 24 0L69.5 0c22 0 41.5 12.8 50.6 32l411 0c26.3 0 45.5 25 38.6 50.4l-41 152.3c-8.5 31.4-37 53.3-69.5 53.3l-288.5 0 5.4 28.5c2.2 11.3 12.1 19.5 23.6 19.5L488 336c13.3 0 24 10.7 24 24s-10.7 24-24 24l-288.3 0c-34.6 0-64.3-24.6-70.7-58.5L77.4 54.5c-.7-3.8-4-6.5-7.9-6.5L24 48C10.7 48 0 37.3 0 24zM128 464a48 48 0 1 1 96 0 48 48 0 1 1 -96 0zm336-48a48 48 0 1 1 0 96 48 48 0 1 1 0-96z" />
                 </svg>
-                <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-                  {loggeduser ? loggeduser[0].cart.length : 0}
-                </span>
+                {cartCount > 0 && (
+                  <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                    {cartCount}
+                  </span>
+                )}
               </Link>
             </li>
             <li className="nav-item">
@@ -76,6 +93,6 @@ const Navbar = () => {
       </div>
     </nav>
   );
-}
+};
 
 export default Navbar;

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import Navbar from './Navbar';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
@@ -21,11 +21,10 @@ const Signup = () => {
   const handleSubmit = (e) => {
     e.preventDefault(); // Förhindrar att sidan laddas om vid formulärinlämning
 
-    // Skapar användaren i Firebase Authentication
     createUserWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
-        const user = userCredential.user; // Hämtar den skapade användaren
-        const initialcartvalue = 0; // Initierar kundvagnen med ett startvärde
+        const user = userCredential.user;
+        const initialcartvalue = 0; 
         console.log(user);
         
         // Lägger till användardata i Firestore-databasen
@@ -34,7 +33,9 @@ const Signup = () => {
           email: email,
           password: password, // OBS! Lösenord bör ej sparas i databasen i klartext
           cart: initialcartvalue,
-          uid: user.uid
+          uid: user.uid,
+          purchaseHistory:[0]
+
         })
           .then(() => {
             setSuccessMsg("Ny användare registrerad! Sidan kommer laddas om till inloggningssidan.");
