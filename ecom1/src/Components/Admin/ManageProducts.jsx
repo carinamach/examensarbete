@@ -67,7 +67,7 @@ const ManageProducts = () => {
   const handleEdit = (product) => {
     setEditingProduct({ ...product });
     setNewImage(null);
-    setImageError('');
+    setImageError(''); 
   };
 
   const handleUpdate = async () => {
