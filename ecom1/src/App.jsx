@@ -1,4 +1,5 @@
-import {BrowserRouter, Route, Routes} from 'react-router-dom';
+import { BrowserRouter } from 'react-router-dom'
+import {Route, Routes} from 'react-router-dom';
 import Home from './Components/Home';
 import Login from './Components/Login';
 import Signup from './Components/Signup';
@@ -17,16 +18,16 @@ import AdminPage from './Components/Admin/AdminPage';
 function App() {
   return (
     <UserAuthProvider>  
-      <BrowserRouter>
+      <BrowserRouter basename="/examensarbete">
         <Routes>
-          <Route exact path="/" element = {<Home/>}/>
-          <Route exact path="/home" element = {<Home/>}/>
+          <Route exact path="/examensarbete/" element = {<Home/>}/>
+          <Route exact path="/examensarbete/home" element = {<Home/>}/>
           <Route exact path="/signup" element = {<Signup/>}/>
           <Route exact path="/login" element = {<Login/>}/>
           <Route exact path="/cart" element = {<Cart/>}/>
           <Route exact path="/profile" element = {<Profile/>}/>
           <Route exact path="/addProduct" element = {<AddProduct/>}/>
-          <Route exact path="/products" element = {<Products/>}/>
+          <Route exact path="/examensarbete/products" element = {<Products/>}/>
           <Route exact path="/product/:id" element = {<Product/>}/>
           <Route exact path="/featuredProducts" element = {<FeaturedProducts/>}/>
           <Route exact path="/checkout" element={<Checkout />} />
