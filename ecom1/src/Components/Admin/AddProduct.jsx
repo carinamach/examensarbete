@@ -126,7 +126,7 @@ const AddProduct = () => {
       setIsSubmitting(false);
     }
   };
-
+              {/* 
   const increaseCount = () => {
     setProductCount(prevCount => prevCount + 1);
   };
@@ -134,6 +134,7 @@ const AddProduct = () => {
   const decreaseCount = () => {
     setProductCount(prevCount => (prevCount > 1 ? prevCount - 1 : 1)); // Förhindra att gå under 1
   };
+ */}
 
   return (
     <div>
