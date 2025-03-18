@@ -21,17 +21,8 @@ const Home = () => {
                         <div className="col-lg-6 mx-auto">
                             <p className="lead mb-4">Upptäck charmiga och personliga illustrationer som sprider glädje.</p>
                             <div className="d-grid gap-2 d-sm-flex justify-content-sm-center mb-5">
-                            <Link 
-              to="/products" 
-              className="btn btn primary"
-              aria-label="Visa alla produkter"
-            >
-              Fler Produkter
-            </Link>
-                            <Link to="/" className="navbar-brand fw-bold">Happy Scribbles</Link>
-
-                                <Link href="/products" className="btn primary btn-lg px-4 me-sm-3">Utforska Butiken</Link>
-                                <Link href="#signup" className="btn secondary btn-lg px-4">Skapa Konto & Börja Handla</Link>
+                                <Link to="/products" className="btn primary btn-lg px-4 me-sm-3">Utforska Butiken</Link>
+                                <Link to="#signup" className="btn secondary btn-lg px-4">Skapa Konto & Börja Handla</Link>
                             </div>
                         </div>
                     </div>
@@ -51,7 +42,7 @@ const Home = () => {
                     <p>Alla våra illustrationer är handgjorda med kärlek. Vi skapar lekfulla och unika illustrationer för att sprida glädje!</p>
 
                     <p><strong>📖 Vill du veta mer om oss?</strong></p>
-                    <Link href="/about-us" className="btn primary">Om oss</Link>
+                    <Link to="/about-us" className="btn primary">Om oss</Link>
                 </div>
             </section>
         </>
