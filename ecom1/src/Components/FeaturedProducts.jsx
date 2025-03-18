@@ -32,7 +32,7 @@ const FeaturedProducts = () => {
   if (loading) return <div role="status" aria-live="polite">Laddar...</div>;
 
   return (
-    <section className="featured-products container py-3 mb-4">
+    <section  className="featured-products container py-3 mb-4">
       <h2 className="text-center mb-4">Utvalda Produkter</h2>
       <div className="row g-4">
         {products.map((product) => (
