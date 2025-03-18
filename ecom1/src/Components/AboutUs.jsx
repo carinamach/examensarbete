@@ -9,7 +9,7 @@ const AboutUs = () => {
             <Navbar />
             <div className='containerAbout rounded-5'>
                 <header>
-                    <h1>Om Happy Scribbles</h1>
+                    <h1>Om Happy Scribbles</h1> 
                 </header>
 
                 <main className>
