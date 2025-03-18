@@ -29,7 +29,7 @@ const FeaturedProducts = () => {
     fetchProducts();
   }, []);
 
-  if (loading) return <div role="status" aria-live="polite">Laddar...</div>;
+  if (loading) return <div role="status" aria-live="polite">Laddar...</div>
 
   return (
     <section  className="featured-products container py-3 mb-4">
