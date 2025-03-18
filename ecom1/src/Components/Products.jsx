@@ -4,7 +4,7 @@ import { db } from '../FirebaseConfigs/firebaseConfig';
 import { collection, query, getDocs, doc, updateDoc } from 'firebase/firestore';
 import { Link } from 'react-router-dom';
 import Navbar from './Navbar';
-import { addToCart } from './cartFunctions';
+import { addToCart } from './cartFunctions.jsx';
 import { useUser } from './UseUser';
 
 
