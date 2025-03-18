@@ -184,7 +184,7 @@ const AddProduct = () => {
           </div>
         ) : (
           <div className="mt-5 text-center">
-            <h1>Bara administratörer kan lägga till produkter</h1>
+            <h1>Bara administratörer kan lägga till produkter</h1> 
           </div>
         )}
       </div>
