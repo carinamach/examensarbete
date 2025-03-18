@@ -3,11 +3,13 @@ name: Deploy Vite Project
 on:
   push:
     branches:
-      - main  # Byt om du använder en annan branch
+      - main
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write  # Viktigt för att kunna deploya till gh-pages
     steps:
       - name: Check out repository
         uses: actions/checkout@v3
@@ -20,7 +22,7 @@ jobs:
       - name: Install dependencies
         run: |
           cd ecom1
-          npm install
+          npm ci  # Använder ci istället för install för mer pålitliga builds
 
       - name: Build project
         run: |
@@ -30,5 +32,7 @@ jobs:
       - name: Deploy to GitHub Pages
         uses: JamesIves/github-pages-deploy-action@v4
         with:
+          folder: ecom1/dist
           branch: gh-pages
-          folder: ecom1/dist  # Viktigt! Deployar rätt mapp
+          clean: true  # Rensar gamla filer
+          token: ${{ secrets.GITHUB_TOKEN }}  # Explicit token definition
