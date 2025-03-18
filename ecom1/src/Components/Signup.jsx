@@ -34,8 +34,7 @@ const Signup = () => {
           password: password, // OBS! Lösenord bör ej sparas i databasen i klartext
           cart: initialcartvalue,
           uid: user.uid,
-          purchaseHistory:[0]
-
+          purchaseHistory: []
         })
           .then(() => {
             setSuccessMsg("Ny användare registrerad! Sidan kommer laddas om till inloggningssidan.");
@@ -91,7 +90,7 @@ const Signup = () => {
               <label className='form-label'>Lösenord</label>
               <input type='password' className='form-control' placeholder='Lösenord' onChange={(e) => setPassword(e.target.value)} />
             </div>
-            <button type='submit' className='btn btn-primary w-100'>Registrera dig</button>
+            <button type='submit' className='btn primary w-100'>Registrera dig</button>
           </form>
           <div className='text-center mt-3'>
             <span>Har du redan ett konto?</span>

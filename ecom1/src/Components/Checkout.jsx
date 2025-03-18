@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { doc, getDoc, updateDoc } from 'firebase/firestore';
+import { doc, getDoc, updateDoc, collection, setDoc } from 'firebase/firestore';
 import { db } from '../FirebaseConfigs/firebaseConfig';
 import { useUser } from './UseUser';
 import Navbar from './Navbar';
@@ -52,7 +52,6 @@ const Checkout = () => {
     event.preventDefault();
     alert('Betalning genomförd! Tack för ditt köp!');
 
-    // Rensa kundvagnen i Firestore och spara köpet
     try {
       const userRef = doc(db, 'users', loggeduser[0].id);
       const userSnap = await getDoc(userRef);
@@ -61,26 +60,35 @@ const Checkout = () => {
         const userData = userSnap.data();
         const purchaseHistory = userData.purchaseHistory || [];
 
-        // Lägg till nuvarande köp i historiken
-        purchaseHistory.push({
+        // Skapa ett nytt orderobjekt
+        const newOrder = {
           items: cartItems,
           total: totalAmount,
-          date: new Date().toISOString() // Spara datum för köpet
-        });
+          date: new Date().toISOString(),
+          userId: loggeduser[0].id,
+          userEmail: loggeduser[0].email,
+          orderStatus: 'paid'
+        };
+
+        // Lägg till i användarens köphistorik
+        purchaseHistory.push(newOrder);
+
+        // Spara ordern i orders collection
+        const orderRef = doc(collection(db, 'orders'));
+        await setDoc(orderRef, newOrder);
 
         // Uppdatera användardokumentet
         await updateDoc(userRef, {
-          cart: [], // Sätt kundvagnen till en tom array
-          purchaseHistory: purchaseHistory // Spara köphistorik
+          cart: [],
+          purchaseHistory: purchaseHistory
         });
 
-        setCartItems([]); // Rensa lokal state
-        setPaymentSuccess(true); // Indikera att betalningen lyckades
+        setCartItems([]);
+        setPaymentSuccess(true);
 
-        // Redirect to home after 4 seconds
         setTimeout(() => {
-          setPaymentSuccess(false); // Clear success message
-          navigate('/'); // Redirect to home
+          setPaymentSuccess(false);
+          navigate('/');
         }, 4000);
       }
     } catch (error) {

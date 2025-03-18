@@ -49,7 +49,7 @@ const Products = () => {
   return (
     <div>
       <Navbar />
-      <div className='container'>
+      <div className='container my-5'>
         <h1>Products</h1>
         {loading && <div>Laddar...</div>}
         {error && <div>Error: {error.message}</div>}
@@ -57,27 +57,33 @@ const Products = () => {
           {/* Loopa igenom och visa alla produkter */}
           {products.map((product) => (
             <div className='col-md-4 mb-4' key={product.id}>
-              <div className='card h-100'>
+              <div className='card h-100 rounded-5'>
                 <Link to={`/product/${product.id}`} className="text-decoration-none">
                   <img
                     src={product.productImage}
                     alt={product.title}
-                    className="card-img-top"
-                    style={{ height: "200px", objectFit: "cover" }}
+                    className="card-img-top rounded-top-5 shadow-sm"
+                    style={{ height: "300px", objectFit: "cover" }}
                   />
-                  <div className="card-body d-flex flex-column">
-                    <h5 className="card-title text-dark">{product.title}</h5>
-                    <p className="card-text flex-grow-1 text-secondary">
-                      {product.description}
-                    </p>
-                    <p className="card-text mt-auto">
-                      <strong>{product.price} kr</strong>
-                    </p>
-                  </div>
                 </Link>
-                <button className="btn btn-primary" onClick={() => addToCart(loggeduser, product)}>
-                  Lägg till i kundvagn
-                </button>
+                <div className="card-body d-flex flex-column">
+                  <h5 className="card-title text-dark">{product.title}</h5>
+                  
+                  <p className="card-text mt-auto">
+                    <strong>{product.price} kr</strong>
+                  </p>
+                  <div className='buttons mt-2'>
+                    <button className="btn primary" onClick={() => addToCart(loggeduser, product)}>
+                      Lägg till i kundvagn
+                    </button>
+                    <Link to={`/product/${product.id}`} className="text-decoration-none">
+                    <button className="btn secondary">
+                      Läs mer
+                    </button>
+                    </Link>
+                    
+                  </div>
+                </div>
               </div>
             </div>
           ))}

@@ -1,22 +1,51 @@
-import Navbar from './Navbar'
-import FeaturedProducts from './FeaturedProducts'
-import { useUser } from './UseUser';
-    
+import Navbar from "./Navbar";
+import FeaturedProducts from "./FeaturedProducts";
+import { useUser } from "./UseUser";
+
 const Home = () => {
     const loggeduser = useUser();
 
     return (
-        <div>
+        <>
             <Navbar />
-            <div className="container mt-4">
-                <div className="jumbotron text-center">
-                    <h1>Välkommen till vår butik</h1>
-                    <p className="lead">Upptäck våra senaste produkter</p>
+            <header>
+                <video autoPlay loop muted className="hero-video" aria-label="Bakgrundsvideo">
+                    <source src="/src/Components/assets/da.mp4" type="video/mp4" />
+                    Din webbläsare stödjer inte videoelementet.
+                </video>
+                <div className="heroOverlay"></div>
+                <div className="hero d-flex justify-content-center align-items-center">
+                    <div className="text-center px-4 w-100">
+                        <h1 className="display-4 fw-bold">Unika handritade figurer – Direkt från hjärtat till din vägg!</h1>
+                        <div className="col-lg-6 mx-auto">
+                            <p className="lead mb-4">Upptäck charmiga och personliga illustrationer som sprider glädje.</p>
+                            <div className="d-grid gap-2 d-sm-flex justify-content-sm-center mb-5">
+                                <a href="/products" className="btn primary btn-lg px-4 me-sm-3">Utforska Butiken</a>
+                                <a href="#signup" className="btn secondary btn-lg px-4">Skapa Konto & Börja Handla</a>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <FeaturedProducts />
-            </div>
-        </div>
-    )
-}
+            </header>
+            
+            <main className="container px-5">
+                <section aria-labelledby="featured-products">
+                    <h2 id="featured-products" className="visually-hidden">Utvalda Produkter</h2>
+                    <FeaturedProducts />
+                </section>
+            </main>
+            
+            <section className="about" id="about">
+                <div className="container">
+                    <h2>Om Happy Scribbles</h2>
+                    <p>Alla våra illustrationer är handgjorda med kärlek. Vi skapar lekfulla och unika illustrationer för att sprida glädje!</p>
 
-export default Home
+                    <p><strong>📖 Vill du veta mer om oss?</strong></p>
+                    <a href="/about-us" className="btn primary">Om oss</a>
+                </div>
+            </section>
+        </>
+    );
+};
+
+export default Home;

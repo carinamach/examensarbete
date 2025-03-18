@@ -86,8 +86,8 @@ const Profile = () => {
             {purchaseHistory.length > 0 && (
               <>
                 <div className="table-responsive">
-                  <table className="table table-striped table-bordered">
-                    <thead className="table-dark">
+                  <table className="order-history-table table table-striped table-bordered rounded-5">
+                    <thead className="table-success ">
                       <tr>
                         <th>🗓️ Datum</th>
                         <th>🛒 Produkter</th>

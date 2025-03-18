@@ -11,6 +11,7 @@ const Cart = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [totalAmount, setTotalAmount] = useState(0);
+  const [message, setMessage] = useState({ text: '', type: '' });
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -57,9 +58,10 @@ const Cart = () => {
       await updateDoc(userRef, { cart: updatedCart });
       setCartItems(updatedCart);
       calculateTotal(updatedCart);
+      setMessage({ text: 'Antal uppdaterat!', type: 'success' });
     } catch (error) {
       console.error('Error updating quantity:', error);
-      alert('Kunde inte uppdatera antalet');
+      setMessage({ text: 'Kunde inte uppdatera antalet', type: 'error' });
     }
   };
 
@@ -70,10 +72,10 @@ const Cart = () => {
       await updateDoc(userRef, { cart: updatedCart });
       setCartItems(updatedCart);
       calculateTotal(updatedCart);
-      alert('Produkten har tagits bort från kundvagnen!');
+      setMessage({ text: 'Produkten har tagits bort från kundvagnen!', type: 'success' });
     } catch (error) {
       console.error('Error removing from cart:', error);
-      alert('Kunde inte ta bort produkten från kundvagnen');
+      setMessage({ text: 'Kunde inte ta bort produkten från kundvagnen', type: 'error' });
     }
   };
 
@@ -82,6 +84,12 @@ const Cart = () => {
       <Navbar />
       <div className="container mt-5">
         <h1>Kundvagn</h1>
+        
+        {message.text && (
+          <div className={`alert ${message.type === 'success' ? 'alert-success' : 'alert-danger'} mb-3`}>
+            {message.text}
+          </div>
+        )}
 
         {error ? (
           <div>
@@ -112,14 +120,14 @@ const Cart = () => {
                         <p className="mb-1">Pris: {item.price} kr</p>
                         <div className="d-flex align-items-center">
                           <button
-                            className="btn btn-outline-secondary btn-sm me-2"
+                            className="btn-sm me-2"
                             onClick={() => handleQuantityChange(item.productId, -1)}
                           >
                             -
                           </button>
                           <span>{item.quantity}</span>
                           <button
-                            className="btn btn-outline-secondary btn-sm ms-2"
+                            className="btn-sm ms-2"
                             onClick={() => handleQuantityChange(item.productId, 1)}
                           >
                             +
