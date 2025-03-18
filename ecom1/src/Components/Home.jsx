@@ -10,7 +10,7 @@ const Home = () => {
             <Navbar />
             <header>
                 <video autoPlay loop muted className="hero-video" aria-label="Bakgrundsvideo">
-                    <source src="/src/Components/assets/da.mp4" type="video/mp4" />
+                    <source src="../public/assets/da.mp4" type="video/mp4" />
                     Din webbläsare stödjer inte videoelementet.
                 </video>
                 <div className="heroOverlay"></div>
