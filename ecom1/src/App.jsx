@@ -1,4 +1,5 @@
-import {BrowserRouter, Route, Routes} from 'react-router-dom';
+import { BrowserRouter } from 'react-router-dom'
+import {Route, Routes} from 'react-router-dom';
 import Home from './Components/Home';
 import Login from './Components/Login';
 import Signup from './Components/Signup';
@@ -17,7 +18,7 @@ import AdminPage from './Components/Admin/AdminPage';
 function App() {
   return (
     <UserAuthProvider>  
-      <BrowserRouter >
+      <BrowserRouter basename="/examensarbete">
         <Routes>
           <Route exact path="/examensarbete/" element = {<Home/>}/>
           <Route exact path="/examensarbete/home" element = {<Home/>}/>
