@@ -17,8 +17,8 @@ import AdminPage from './Components/Admin/AdminPage';
 function App() {
   return (
     <UserAuthProvider>  
-      <BrowserRouter>
-        <Routes>
+    <BrowserRouter basename="/examensarbete">
+    <Routes>
           <Route exact path="/" element = {<Home/>}/>
           <Route exact path="/home" element = {<Home/>}/>
           <Route exact path="/signup" element = {<Signup/>}/>
