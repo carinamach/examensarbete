@@ -36,3 +36,4 @@ jobs:
           branch: gh-pages
           clean: true  # Rensar gamla filer
           token: ${{ secrets.GITHUB_TOKEN }}  # Explicit token definition
+ 
