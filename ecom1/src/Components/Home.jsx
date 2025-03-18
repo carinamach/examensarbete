@@ -22,7 +22,7 @@ const Home = () => {
                             <p className="lead mb-4">Upptäck charmiga och personliga illustrationer som sprider glädje.</p>
                             <div className="d-grid gap-2 d-sm-flex justify-content-sm-center mb-5">
                                 <Link to="/products" className="btn primary btn-lg px-4 me-sm-3">Utforska Butiken</Link>
-                                <Link to="#signup" className="btn secondary btn-lg px-4">Skapa Konto & Börja Handla</Link>
+                                <Link to="/signup" className="btn secondary btn-lg px-4">Skapa Konto & Börja Handla</Link>
                             </div>
                         </div>
                     </div>
