@@ -3,11 +3,19 @@
 <head>
     <meta charset="utf-8">
     <title>Page Not Found</title>
-    <script>
-        window.location.href = "/examensarbete/";
+    <script type="text/javascript">
+      // Enkel omdirigering som bevarar hela sökvägen
+      var segmentCount = 1;
+      var location = window.location;
+      var rootPath = '/examensarbete/';
+      var newUrl = location.protocol + '//' + location.hostname + 
+                   (location.port ? ':' + location.port : '') + 
+                   rootPath + '?p=' + 
+                   location.pathname.slice(rootPath.length);
+      window.location.replace(newUrl);
     </script>
 </head>
 <body>
-    <p>Redirecting to home page...</p>
+    <h2>Omdirigerar...</h2>
 </body>
 </html>
