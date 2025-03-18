@@ -1,4 +1,4 @@
-name: Deploy Next.js app
+name: Deploy Vite app
 
 on:
   push:
@@ -24,10 +24,8 @@ jobs:
       - name: Build application
         run: npm run build
         
-      - name: Run tests
-        run: npm test
-        
-      - name: Deploy to production
-        if: github.ref == 'refs/heads/main'
-        # Här lägger du till dina deploy-steg
-        # Till exempel för Vercel, Netlify etc. 
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./dist 
