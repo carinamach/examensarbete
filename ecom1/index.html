@@ -7,6 +7,19 @@
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="/ecom1/src/Components/styles/footer.css">
     <title>Happy Scribbles</title>
+    <script type="text/javascript">
+      // Hantera GitHub Pages 404 omdirigering
+      (function(l) {
+        if (l.search[1] === '/' ) {
+          var decoded = l.search.slice(1).split('&').map(function(s) { 
+            return s.replace(/~and~/g, '&')
+          }).join('?');
+          window.history.replaceState(null, null,
+              l.pathname.slice(0, -1) + decoded + l.hash
+          );
+        }
+      }(window.location))
+    </script>
   </head>
   <body>
     <div id="root"></div>
