@@ -1,6 +1,7 @@
 import Navbar from "./Navbar";
 import FeaturedProducts from "./FeaturedProducts";
 import { useUser } from "./UseUser";
+import { Link } from 'react-router-dom';
 
 const Home = () => {
     const loggeduser = useUser();
@@ -11,7 +12,7 @@ const Home = () => {
             <header>
                 <video autoPlay loop muted className="hero-video" aria-label="Bakgrundsvideo">
                     <source src="../public/assets/da.mp4" type="video/mp4" />
-                    Din webbläsare stödjer inte videoelementet.
+                
                 </video>
                 <div className="heroOverlay"></div>
                 <div className="hero d-flex justify-content-center align-items-center">
@@ -20,8 +21,10 @@ const Home = () => {
                         <div className="col-lg-6 mx-auto">
                             <p className="lead mb-4">Upptäck charmiga och personliga illustrationer som sprider glädje.</p>
                             <div className="d-grid gap-2 d-sm-flex justify-content-sm-center mb-5">
-                                <a href="/products" className="btn primary btn-lg px-4 me-sm-3">Utforska Butiken</a>
-                                <a href="#signup" className="btn secondary btn-lg px-4">Skapa Konto & Börja Handla</a>
+                            <Link to="/" className="navbar-brand fw-bold">Happy Scribbles</Link>
+
+                                <Link href="/products" className="btn primary btn-lg px-4 me-sm-3">Utforska Butiken</Link>
+                                <Link href="#signup" className="btn secondary btn-lg px-4">Skapa Konto & Börja Handla</Link>
                             </div>
                         </div>
                     </div>
@@ -41,7 +44,7 @@ const Home = () => {
                     <p>Alla våra illustrationer är handgjorda med kärlek. Vi skapar lekfulla och unika illustrationer för att sprida glädje!</p>
 
                     <p><strong>📖 Vill du veta mer om oss?</strong></p>
-                    <a href="/about-us" className="btn primary">Om oss</a>
+                    <Link href="/about-us" className="btn primary">Om oss</Link>
                 </div>
             </section>
         </>
