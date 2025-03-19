@@ -10,9 +10,7 @@ const Home = () => {
         <>
             <Navbar />
             <header>
-            <video autoPlay loop muted className="hero-video" aria-label="Bakgrundsvideo">
-    <source src="https://www.dropbox.com/scl/fi/qqlj1rdb3qbeetqz3mf6w/15832156-hd_1920_1080_30fps-1.mp4?rlkey=8n9v5eqc3fp2b4ptkb1hk5qgn&raw=1" type="video/mp4" />
-</video>
+          
 <video autoPlay loop muted className="hero-video" aria-label="Bakgrundsvideo">
     <source src="/public/assets/drawing.mp4" type="video/mp4" />
 </video>
