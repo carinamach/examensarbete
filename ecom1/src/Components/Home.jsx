@@ -11,7 +11,7 @@ const Home = () => {
             <Navbar />
             <header>
                 <video autoPlay loop muted className="hero-video" aria-label="Bakgrundsvideo">
-                    <source src="/da.mp4" type="video/mp4" />
+                    <source src="/assets/da.mp4" type="video/mp4" />
                 
                 </video>
                 <div className="heroOverlay"></div>
