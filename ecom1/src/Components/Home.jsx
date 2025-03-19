@@ -12,7 +12,7 @@ const Home = () => {
             <header>
           
 <video autoPlay loop muted className="hero-video" aria-label="Bakgrundsvideo">
-    <source src="/public/assets/drawing.mp4" type="video/mp4" />
+    <source src="/public/assets/draw.mp4" type="video/mp4" />
 </video>
 
 
