@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { db } from '../FirebaseConfigs/firebaseConfig';
-import { collection, query, getDocs, limit } from 'firebase/firestore';
+import { collection, query, getDocs } from 'firebase/firestore';
 import { Link } from 'react-router-dom';
 
 const FeaturedProducts = () => {
@@ -10,7 +10,7 @@ const FeaturedProducts = () => {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const q = query(collection(db, 'products'), limit(3));
+        const q = query(collection(db, 'products'));
         const querySnapshot = await getDocs(q);
 
         const productsList = [];
@@ -18,7 +18,15 @@ const FeaturedProducts = () => {
           productsList.push({ id: doc.id, ...doc.data() });
         });
 
-        setProducts(productsList);
+        // Randomly select 3 products
+        const randomProducts = [];
+        while (randomProducts.length < 3 && productsList.length > 0) {
+          const randomIndex = Math.floor(Math.random() * productsList.length);
+          randomProducts.push(productsList[randomIndex]);
+          productsList.splice(randomIndex, 1); // Remove selected product to avoid duplicates
+        }
+
+        setProducts(randomProducts);
       } catch (error) {
         console.error('Error fetching products:', error);
       } finally {
@@ -32,7 +40,7 @@ const FeaturedProducts = () => {
   if (loading) return <div role="status" aria-live="polite">Laddar...</div>
 
   return (
-    <section  className="featured-products container py-3 mb-4">
+    <section className="featured-products container py-3 mb-4">
       <h2 className="text-center mb-4">Utvalda Produkter</h2>
       <div className="row g-4">
         {products.map((product) => (
@@ -86,4 +94,4 @@ const FeaturedProducts = () => {
   );
 };
 
-export default FeaturedProducts
+export default FeaturedProducts;
