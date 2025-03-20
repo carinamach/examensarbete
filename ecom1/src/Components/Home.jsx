@@ -14,8 +14,6 @@ const Home = () => {
 <video autoPlay loop muted className="hero-video" aria-label="Bakgrundsvideo">
     <source src="/assets/draw.mp4" type="video/mp4" />
 </video>
-
-
                 <div className="heroOverlay"></div>
                 <div className="hero d-flex justify-content-center align-items-center">
                     <div className="text-center px-4 w-100">
