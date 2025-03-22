@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import { doc, getDoc, updateDoc } from 'firebase/firestore';
+import { doc, getDoc } from 'firebase/firestore';
 import { db } from '../FirebaseConfigs/firebaseConfig';
 import { useUser } from './UseUser';
 import Navbar from './Navbar';
@@ -44,23 +44,15 @@ const Product = () => {
       <div className="container mt-5">
         <div className="row">
           <div className="col-md-6">
-            <img
-              src={product.productImage}
-              alt={product.title}
-              className="img-fluid rounded-5"
-            />
+            <img src={product.productImage} alt={product.title} className="img-fluid rounded-5" />
           </div>
           <div className="col-md-6">
             <h1>{product.title}</h1>
             <p className="lead">{product.price} kr</p>
             <p>{product.description}</p>
-            <button
-              className="btn primary"
-              onClick={() => addToCart(loggeduser, product)}
-            >
+            <button className="btn primary" onClick={() => addToCart(loggeduser, product)}>
               Lägg till i kundvagn
             </button>
-
           </div>
         </div>
       </div>

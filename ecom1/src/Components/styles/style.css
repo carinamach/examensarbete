@@ -8,7 +8,7 @@
   --primary-color: #434f36;
   --secondary-color: #7b875a;
   --third-color: #b3be97;
-  --forth-color: #e0d9bd;
+  --fifth-color: #e4c6be;
   --fifth-color: #e4c6be;
   --background-color: #fffbf7;
 
@@ -84,14 +84,35 @@ small {
   font-size: 0.750rem;
 }
 
-/* ======= Signup-komponent ======= */
-.signup-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  background-color: var(--background-color);
+/* ======= Product Card Styles ======= */
+.product-card {
+  position: relative;
+  overflow: hidden;
 }
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.product-card:hover .overlay {
+  opacity: 1;
+}
+
+.product-card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+}
+
 
 .signup-form {
   background: var(--white);
@@ -404,7 +425,6 @@ p {
 }
 
 .hero h1 {
-  font-size: 2.8rem;
   margin-bottom: 1.5rem;
   max-width: 800px;
   margin-left: auto;

@@ -11,13 +11,11 @@ const Signup = () => {
   const [username, setUserName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const navigate = useNavigate(); // Hook för att navigera till andra sidor
+  const navigate = useNavigate(); 
 
-  // State för att hantera fel- och framgångsmeddelanden
   const [errorMsg, setErrorMsg] = useState("");
   const [successMsg, setSuccessMsg] = useState("");
 
-  // Funktion för att hantera formulärets inlämning
   const handleSubmit = (e) => {
     e.preventDefault(); // Förhindrar att sidan laddas om vid formulärinlämning
 
@@ -27,11 +25,10 @@ const Signup = () => {
         const initialcartvalue = 0; 
         console.log(user);
         
-        // Lägger till användardata i Firestore-databasen
         addDoc(collection(db, "users"), {
           username: username,
           email: email,
-          password: password, // OBS! Lösenord bör ej sparas i databasen i klartext
+          password: password, //lägger den är bara för att visa att jag kan använda lösenordet. Firebase auth löser det annars. 
           cart: initialcartvalue,
           uid: user.uid,
           purchaseHistory: []
@@ -43,16 +40,15 @@ const Signup = () => {
             setEmail('');
             setErrorMsg('');
             
-            // Väntar 4 sekunder innan användaren skickas till inloggningssidan
+        
             setTimeout(() => {
               setSuccessMsg('');
               navigate('/login');
-            }, 4000);
+            }, 2000);
           })
           .catch((error) => setErrorMsg(error.message));
       })
       .catch((error) => {
-        // Hanterar olika felmeddelanden från Firebase Authentication
         if (error.message.includes('auth/invalid-email')) {
           setErrorMsg('Ogiltig e-postadress');
         } else if (error.message.includes('auth/email-already-in-use')) {

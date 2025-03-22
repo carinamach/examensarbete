@@ -10,7 +10,6 @@ const ManageProducts = () => {
   const [newImage, setNewImage] = useState(null);
   const [imageError, setImageError] = useState('');
 
-  // Konstanter för bildvalidering
   const allowedImageTypes = ['image/png', 'image/jpeg', 'image/jpg', 'image/webp'];
   const maxImageSize = 5 * 1024 * 1024; // 5MB
 
@@ -89,7 +88,6 @@ const ManageProducts = () => {
 
       await updateDoc(productRef, updateData);
       
-      // Uppdatera products state med den nya informationen
       setProducts(products.map(product => 
         product.id === editingProduct.id 
           ? { ...product, ...updateData }

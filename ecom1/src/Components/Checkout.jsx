@@ -60,7 +60,6 @@ const Checkout = () => {
         const userData = userSnap.data();
         const purchaseHistory = userData.purchaseHistory || [];
 
-        // Skapa ett nytt orderobjekt
         const newOrder = {
           items: cartItems,
           total: totalAmount,
@@ -70,14 +69,11 @@ const Checkout = () => {
           orderStatus: 'paid'
         };
 
-        // Lägg till i användarens köphistorik
         purchaseHistory.push(newOrder);
 
-        // Spara ordern i orders collection
         const orderRef = doc(collection(db, 'orders'));
         await setDoc(orderRef, newOrder);
 
-        // Uppdatera användardokumentet
         await updateDoc(userRef, {
           cart: [],
           purchaseHistory: purchaseHistory

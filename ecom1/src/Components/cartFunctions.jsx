@@ -14,7 +14,7 @@ export const addToCart = async (loggeduser,product) => {
   
       let currentCart = [];
       if (userSnap.exists()) {
-        currentCart = userSnap.data().cart || []; // Hämta den senaste kundvagnen från Firestore
+        currentCart = userSnap.data().cart || []; // Hämta den senaste cart från Firestore
       }
   
       // Kolla om produkten redan finns i kundvagnen
@@ -22,11 +22,9 @@ export const addToCart = async (loggeduser,product) => {
       
       let updatedCart;
       if (existingItemIndex >= 0) {
-        // Öka antalet om produkten redan finns
         updatedCart = [...currentCart];
         updatedCart[existingItemIndex].quantity += 1;
       } else {
-        // Lägg till ny produkt
         updatedCart = [
           ...currentCart,
           {
@@ -39,7 +37,6 @@ export const addToCart = async (loggeduser,product) => {
         ];
       }
   
-      // Uppdatera Firestore
       await updateDoc(userRef, {
         cart: updatedCart
       });

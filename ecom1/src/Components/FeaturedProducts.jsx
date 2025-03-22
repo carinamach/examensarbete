@@ -18,12 +18,11 @@ const FeaturedProducts = () => {
           productsList.push({ id: doc.id, ...doc.data() });
         });
 
-        // Randomly select 3 products
         const randomProducts = [];
         while (randomProducts.length < 3 && productsList.length > 0) {
           const randomIndex = Math.floor(Math.random() * productsList.length);
           randomProducts.push(productsList[randomIndex]);
-          productsList.splice(randomIndex, 1); // Remove selected product to avoid duplicates
+          productsList.splice(randomIndex, 1);
         }
 
         setProducts(randomProducts);
@@ -43,45 +42,37 @@ const FeaturedProducts = () => {
     <section className="featured-products container py-3 mb-4">
       <h2 className="text-center mb-4">Utvalda Produkter</h2>
       <div className="row g-4">
+
+
+
+
         {products.map((product) => (
-          <article className="col-12 col-sm-6 col-md-4" key={product.id}>
-            <div className="product-card h-100 rounded-4">
-              <Link 
-                to={`/product/${product.id}`} 
-                className="text-decoration-none position-relative d-block"
-                aria-label={`Visa ${product.title}`}
-              >
-                <div className="image-container position-relative">
-                  <img
-                    src={product.productImage}
-                    alt={product.title}
-                    className="img-fluid rounded-4 w-100"
-                    style={{ 
-                      height: "300px", 
-                      objectFit: "cover",
-                      aspectRatio: "4/3"
-                    }}
-                    loading="lazy"
-                  />
-                  <div className="overlay d-flex align-items-center justify-content-center">
-                    <span className="btn btn-light">Läs mer</span>
-                  </div>
-                </div>
-                <div className="product-info text-center mt-3 p-3">
-                  <h3 className="h5 product-title text-dark mb-2">{product.title}</h3>
-                  <p className="product-price text-secondary mb-0">
-                    <span className="visually-hidden">Pris:</span>
-                    {product.price} kr
-                  </p>
+          <div className='col-md-4 mb-4' key={product.id}>
+            <div className='card h-100 rounded-5 product-card'>
+              <Link to={`/product/${product.id}`} className="text-decoration-none position-relative">
+                <img
+                  src={product.productImage}
+                  alt={product.title}
+                  className="card-img-top rounded-top-5 shadow-sm"
+                  style={{ height: "300px", objectFit: "cover" }}
+                />
+                <div className="overlay d-flex align-items-center justify-content-center">
+                  <span className="btn btn-light">Read More</span>
                 </div>
               </Link>
+              <div className="card-body d-flex flex-column">
+                <h5 className="card-title text-dark">{product.title}</h5>
+                <p className="card-text mt-auto">
+                  <strong>{product.price} kr</strong>
+                </p>
+              </div>
             </div>
-          </article>
+          </div>
         ))}
         <div className="col-12 mt-4">
           <div className="d-flex justify-content-center">
-            <Link 
-              to="/products" 
+            <Link
+              to="/products"
               className="btn btn primary"
               aria-label="Visa alla produkter"
             >

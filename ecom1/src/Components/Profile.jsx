@@ -15,7 +15,7 @@ const Profile = () => {
     const fetchPurchaseHistory = async () => {
       if (!loggeduser || !loggeduser[0]) {  
         setError('Du måste vara inloggad för att se din profil');
-        setLoading(false);  // Se till att laddning stoppas
+        setLoading(false);
         return;
       }
       try {
@@ -33,7 +33,6 @@ const Profile = () => {
       }
     };
   
-    // Om ingen användare är inloggad, stoppa laddningen direkt
     if (loggeduser === null) {
       setLoading(false);
     } else {

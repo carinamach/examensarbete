@@ -1,19 +1,18 @@
 import Navbar from "./Navbar";
 import FeaturedProducts from "./FeaturedProducts";
-import { useUser } from "./UseUser";
+// import { useUser } from "./UseUser";
 import { Link } from 'react-router-dom';
 
 const Home = () => {
-    const loggeduser = useUser();
+    // const loggeduser = useUser();
 
     return (
         <>
             <Navbar />
             <header>
-          
-<video autoPlay loop muted className="hero-video" aria-label="Bakgrundsvideo">
-    <source src="/assets/draw.mp4" type="video/mp4" />
-</video>
+                <video autoPlay loop muted className="hero-video" aria-label="Bakgrundsvideo">
+                    <source src="/assets/draw.mp4" type="video/mp4" />
+                </video>
                 <div className="heroOverlay"></div>
                 <div className="hero d-flex justify-content-center align-items-center">
                     <div className="text-center px-4 w-100">
@@ -28,14 +27,14 @@ const Home = () => {
                     </div>
                 </div>
             </header>
-            
+
             <main className="container px-5">
                 <section aria-labelledby="featured-products">
                     <h2 id="featured-products" className="visually-hidden">Utvalda Produkter</h2>
                     <FeaturedProducts />
                 </section>
             </main>
-            
+
             <section className="about" id="about">
                 <div className="container">
                     <h2>Om Happy Scribbles</h2>

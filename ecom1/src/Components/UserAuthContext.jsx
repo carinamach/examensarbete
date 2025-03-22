@@ -1,6 +1,6 @@
-import { useState, useEffect, createContext, useContext } from 'react';
+import { useState, useEffect, createContext } from 'react';
 import { auth, db } from '../FirebaseConfigs/firebaseConfig';
-import { collection, doc, query, where, onSnapshot } from 'firebase/firestore';
+import { collection, query, where, onSnapshot } from 'firebase/firestore';
 
 const UserAuthContext = createContext();
 
@@ -10,7 +10,6 @@ export function UserAuthProvider({ children }) {
     useEffect(() => {
         const unsubscribeAuth = auth.onAuthStateChanged(userlogged => {
             if (userlogged) {
-                // Skapa en query för att hämta användarens dokument
                 const q = query(collection(db, "users"), where("uid", "==", userlogged.uid));
 
                 // Lyssna på förändringar i användardokumentet i realtid
@@ -20,7 +19,7 @@ export function UserAuthProvider({ children }) {
                     }
                 });
 
-                return () => unsubscribeFirestore(); // Rensa upp när komponenten avmonteras
+                return () => unsubscribeFirestore(); 
             } else {
                 setUser(null);
             }
@@ -35,4 +34,4 @@ export function UserAuthProvider({ children }) {
         </UserAuthContext.Provider>
     );
 }
-export default UserAuthContext; // Endast export av contextet och providern
+export default UserAuthContext;
