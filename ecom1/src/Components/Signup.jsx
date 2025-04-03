@@ -67,7 +67,6 @@ const Signup = () => {
 
   return (
     <div>
-      <Navbar />
       <div className='container d-flex justify-content-center align-items-center vh-100'>
         <div className='card p-4 shadow' style={{ width: '25rem' }}>
           <h2 className='text-center mb-3'>Skapa konto</h2>

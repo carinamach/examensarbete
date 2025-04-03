@@ -42,7 +42,6 @@ const Profile = () => {
   
   return (
     <div>
-      <Navbar />
       <div className="container mt-5">
         {loading && <p>Laddar...</p>}
         {error && <p>Error: {error}</p>}

@@ -4,7 +4,6 @@ import Navbar from './Navbar'
 function FofPage() {
   return (
     <div className='container'>
-      <Navbar />    
       <h3 className='text-center mt-5 pt-5'>404 Not Found</h3>
     </div>
   )

@@ -38,7 +38,6 @@ const Product = () => {
 
   return (
     <div>
-      <Navbar />
       {loading && <div>Laddar...</div>}
       {error && <div>Error: {error.message}</div>}
       <div className="container mt-5">

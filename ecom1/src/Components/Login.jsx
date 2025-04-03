@@ -48,7 +48,6 @@ const Login = () => {
 
     return (
         <>
-            <Navbar />
             <main className='container d-flex justify-content-center align-items-center vh-100'>
                 <section className='card p-4 shadow' style={{ width: '25rem' }}>
                     <h2 className='text-center mb-3'>Login</h2>

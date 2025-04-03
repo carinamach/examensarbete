@@ -2,13 +2,11 @@
 @import url('https://fonts.googleapis.com/css?family=Old%20Standard%20TT:700|Urbanist:400');
 @import url('https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,200..900;1,200..900&family=Urbanist:ital,wght@0,100..900;1,100..900&display=swap');
 
-
 /* ======= Variabler ======= */
 :root {
   --primary-color: #434f36;
   --secondary-color: #7b875a;
   --third-color: #b3be97;
-  --fifth-color: #e4c6be;
   --fifth-color: #e4c6be;
   --background-color: #fffbf7;
 
@@ -29,21 +27,17 @@
 
 /* ======= Grundläggande styling ======= */
 
+html, body {
+  height: 100%; /* Ensure full height */
+  margin: 0; /* Remove default margin */
+  display: flex; /* Use flexbox for layout */
+  flex-direction: column; /* Stack children vertically */
+}
+
 #root {
-  min-height: 86vh;
-  ;
+  flex: 1; /* Allow root to grow and fill space */
 }
 
-
-html {
-  font-family: 'Urbanist', sans-serif;
-  font-size: 100%;
-}
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
 body {
   font-family: 'Urbanist', sans-serif;
   font-weight: 400;
@@ -52,14 +46,20 @@ body {
   line-height: 1.6;
 }
 
-/* ======= Typografi ======= */
-h1,h2,h3,h4,h5,h6 {
-  font-family: 'Old Standard TT', serif;
-  font-weight: 700;
-  color: var(--dark-color);
+/* ======= Footer Styles ======= */
+.footer {
+  background-color: var(--black);
+  color: var(--white);
+  padding: 20px 10%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  text-align: center;
+  position: relative; /* Ensure footer is positioned correctly */
 }
 
-
+/* Other existing styles remain unchanged... */
 h1 {
   font-size: 4.210rem;
 }
@@ -295,6 +295,7 @@ ul.navbar-nav.ms-auto {
   align-items: center;
   text-align: center;
   bottom: 0;
+  position: relative;
 }
 
 ul.footer-links {
@@ -665,4 +666,13 @@ table .order-history-table{
   .product-card img {
     height: 200px !important;
   }
+}
+
+
+
+.adminStart{
+  min-height: 75vh;
+}
+.main{
+  min-height: 80vh;
 }

@@ -15,8 +15,7 @@ const AdminPage = () => {
 
   return (
     <div>
-      <Navbar />
-      <div className="container mt-4">
+      <div className="container mt-4 adminStart">
         <h1>Admin Dashboard</h1>
         
         <div className="row mt-4">

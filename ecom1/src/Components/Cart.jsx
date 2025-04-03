@@ -80,8 +80,7 @@ const Cart = () => {
   };
 
   return (
-    <div>
-      <Navbar />
+    <main className="main">
       <div className="container mt-5">
         <h1>Kundvagn</h1>
         
@@ -151,7 +150,7 @@ const Cart = () => {
             </>
           )}
       </div>
-    </div>
+    </main>
   );
 };
 

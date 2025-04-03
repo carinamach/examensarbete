@@ -6,7 +6,6 @@ const AboutUs = () => {
 
     return (
         <>
-            <Navbar />
             <div className='containerAbout rounded-5'>
                 <header>
                     <h1>Om Happy Scribbles</h1> 

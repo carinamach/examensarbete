@@ -41,7 +41,6 @@ const Products = () => {
 
   return (
     <div>
-      <Navbar />
       <div className='container my-5'>
         <h1>Products</h1>
         {loading && <div>Laddar...</div>}

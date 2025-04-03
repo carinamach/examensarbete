@@ -8,7 +8,6 @@ const Home = () => {
 
     return (
         <>
-            <Navbar />
             <header>
                 <video autoPlay loop muted className="hero-video" aria-label="Bakgrundsvideo">
                     <source src="/assets/draw.mp4" type="video/mp4" />
