@@ -44,7 +44,7 @@ const Product = () => {
         <div className="row">
             <h1>{product.title}</h1>
             <p className="lead text-dark">{product.price} kr</p>
-          <div className="col-md-6">
+          <div className="col-md-6 mb-3">
             <img src={product.productImage} alt={product.title} className="img-fluid rounded-5 border" />
           </div>
           <div className="col-md-6">
