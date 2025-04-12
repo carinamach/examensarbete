@@ -3,7 +3,6 @@ import { useParams } from 'react-router-dom';
 import { doc, getDoc } from 'firebase/firestore';
 import { db } from '../FirebaseConfigs/firebaseConfig';
 import { useUser } from './UseUser';
-import Navbar from './Navbar';
 import { addToCart } from './cartFunctions';
 
 const Product = () => {
@@ -24,8 +23,8 @@ const Product = () => {
         } else {
           setError('Produkten kunde inte hittas');
         }
-      } catch (err) {
-        setError('Ett fel uppstod vid hämtning av produkten');
+      } catch (error) {
+        setError(`Ett fel uppstod vid hämtning av produkten: ${error.message}`);
       } finally {
         setLoading(false);
       }
@@ -34,16 +33,16 @@ const Product = () => {
     fetchProduct();
   }, [id]);
 
+  if (loading) return <div>Laddar...</div>;
+  if (error) return <div>Error: {error}</div>;
   if (!product) return <div>Ingen produkt hittad</div>;
 
   return (
     <div className='m-4'>
-      {loading && <div>Laddar...</div>}
-      {error && <div>Error: {error.message}</div>}
       <div className="container mt-5">
         <div className="row">
-            <h1>{product.title}</h1>
-            <p className="lead text-dark">{product.price} kr</p>
+          <h1>{product.title}</h1>
+          <p className="lead text-dark">{product.price} kr</p>
           <div className="col-md-6 mb-3">
             <img src={product.productImage} alt={product.title} className="img-fluid rounded-5 border" />
           </div>

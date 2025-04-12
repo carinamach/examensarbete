@@ -2,7 +2,6 @@ import { useState, useEffect } from 'react';
 import { doc, getDoc, updateDoc } from 'firebase/firestore';
 import { db } from '../FirebaseConfigs/firebaseConfig';
 import { useUser } from './UseUser';
-import Navbar from './Navbar';
 import { useNavigate } from 'react-router-dom';
 
 const Cart = () => {
@@ -33,8 +32,8 @@ const Cart = () => {
         } else {
           setError('Användaren kunde inte hittas');
         }
-      } catch (err) {
-        setError('Ett fel uppstod vid hämtning av kundvagnen');
+      } catch (error) {
+        setError(`Ett fel uppstod vid hämtning av kundvagnen: ${error.message}`);
       } finally {
         setLoading(false);
       }
@@ -90,65 +89,70 @@ const Cart = () => {
           </div>
         )}
 
-        {error ? (
+        {loading ? (
+          <div className="text-center">
+            <div className="spinner-border" role="status">
+              <span className="visually-hidden">Laddar...</span>
+            </div>
+          </div>
+        ) : error ? (
           <div>
             <div className="alert alert-danger">{error}</div>
             <button className="btn btn-primary" onClick={() => navigate('/login')}>
               Logga in
             </button>
           </div>
-        ) :
-          cartItems.length === 0 ? (
-            <div>
-              <p>Kundvagnen är tom. Lägg till produkter för att se dem här.</p>
-            </div>
-          ) : (
-            <>
-              <ul className="list-group">
-                {cartItems.map((item) => (
-                  <li className="list-group-item d-flex justify-content-between align-items-center" key={item.productId}>
-                    <div className="d-flex align-items-center">
-                      <img
-                        src={item.imageUrl}
-                        alt={item.title}
-                        className="img-thumbnail me-3"
-                        style={{ width: '80px', height: '80px', objectFit: 'cover' }}
-                      />
-                      <div>
-                        <h5 className="mb-1">{item.title}</h5>
-                        <p className="mb-1">Pris: {item.price} kr</p>
-                        <div className="d-flex align-items-center">
-                          <button
-                            className="btn-sm me-2"
-                            onClick={() => handleQuantityChange(item.productId, -1)}
-                          >
-                            -
-                          </button>
-                          <span>{item.quantity}</span>
-                          <button
-                            className="btn-sm ms-2"
-                            onClick={() => handleQuantityChange(item.productId, 1)}
-                          >
-                            +
-                          </button>
-                        </div>
+        ) : cartItems.length === 0 ? (
+          <div>
+            <p>Kundvagnen är tom. Lägg till produkter för att se dem här.</p>
+          </div>
+        ) : (
+          <>
+            <ul className="list-group">
+              {cartItems.map((item) => (
+                <li className="list-group-item d-flex justify-content-between align-items-center" key={item.productId}>
+                  <div className="d-flex align-items-center">
+                    <img
+                      src={item.imageUrl}
+                      alt={item.title}
+                      className="img-thumbnail me-3"
+                      style={{ width: '80px', height: '80px', objectFit: 'cover' }}
+                    />
+                    <div>
+                      <h5 className="mb-1">{item.title}</h5>
+                      <p className="mb-1">Pris: {item.price} kr</p>
+                      <div className="d-flex align-items-center">
+                        <button
+                          className="btn-sm me-2"
+                          onClick={() => handleQuantityChange(item.productId, -1)}
+                        >
+                          -
+                        </button>
+                        <span>{item.quantity}</span>
+                        <button
+                          className="btn-sm ms-2"
+                          onClick={() => handleQuantityChange(item.productId, 1)}
+                        >
+                          +
+                        </button>
                       </div>
                     </div>
-                    <button
-                      className="btn btn-danger btn-sm"
-                      onClick={() => removeFromCart(item.productId)}
-                    >
-                      Ta bort
-                    </button>
-                  </li>
-                ))}
-              </ul>
-              <h3 className="mt-4">Totalt: {totalAmount} kr</h3>
-              <button className="btn btn-success mt-3" onClick={() => navigate('/checkout')}>
-                Gå till Checkout
-              </button>
-            </>
-          )}
+                  </div>
+                  <button
+                    className="btn btn-danger btn-sm"
+                    onClick={() => removeFromCart(item.productId)}
+                  >
+                    Ta bort
+                  </button>
+                </li>
+              ))}
+            </ul>
+            <h3 className="mt-4">Totalt: {totalAmount} kr</h3>
+            <button className="btn btn-success mt-3" onClick={() => navigate('/checkout')}>
+              Gå till Checkout
+            </button>
+          </>
+        )}
       </div>
     </main>
   );
