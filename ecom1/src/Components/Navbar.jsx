@@ -8,6 +8,7 @@ const Navbar = () => {
   const loggeduser = useUser();
   const navigate = useNavigate();
   const [cartCount, setCartCount] = useState(0);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   useEffect(() => {
     if (loggeduser && loggeduser[0].cart) {
@@ -16,10 +17,42 @@ const Navbar = () => {
     }
   }, [loggeduser]);
 
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      const navbar = document.getElementById('navbarNav');
+      const toggleButton = document.querySelector('.navbar-toggler');
+      
+      if (isMenuOpen && navbar && !navbar.contains(event.target) && !toggleButton.contains(event.target)) {
+        setIsMenuOpen(false);
+        navbar.classList.remove('show');
+      }
+    };
+
+    const handleScroll = () => {
+      if (isMenuOpen) {
+        const navbar = document.getElementById('navbarNav');
+        setIsMenuOpen(false);
+        navbar?.classList.remove('show');
+      }
+    };
+
+    document.addEventListener('click', handleClickOutside);
+    window.addEventListener('scroll', handleScroll);
+
+    return () => {
+      document.removeEventListener('click', handleClickOutside);
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, [isMenuOpen]);
+
   const handleLogout = () => {
     auth.signOut().then(() => {
       navigate('/login');
     });
+  };
+
+  const handleToggleMenu = () => {
+    setIsMenuOpen(!isMenuOpen);
   };
 
   return (
@@ -35,6 +68,7 @@ const Navbar = () => {
           aria-controls="navbarNav" 
           aria-expanded="false" 
           aria-label="Toggle navigation"
+          onClick={handleToggleMenu}
         >
           <span className="navbar-toggler-icon"></span>
         </button>

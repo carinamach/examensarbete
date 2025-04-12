@@ -37,13 +37,13 @@ const Product = () => {
   if (!product) return <div>Ingen produkt hittad</div>;
 
   return (
-    <div>
+    <div className='m-4'>
       {loading && <div>Laddar...</div>}
       {error && <div>Error: {error.message}</div>}
       <div className="container mt-5">
         <div className="row">
           <div className="col-md-6">
-            <img src={product.productImage} alt={product.title} className="img-fluid rounded-5" />
+            <img src={product.productImage} alt={product.title} className="img-fluid rounded-5 border" />
           </div>
           <div className="col-md-6">
             <h1>{product.title}</h1>

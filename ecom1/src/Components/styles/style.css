@@ -676,3 +676,20 @@ table .order-history-table{
 .main{
   min-height: 80vh;
 }
+
+@media (max-width: 991.98px) {
+  .navbar-collapse {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background-color: white;
+    padding: 1rem;
+    z-index: 1000;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  }
+
+  .navbar {
+    position: relative;
+  }
+}
