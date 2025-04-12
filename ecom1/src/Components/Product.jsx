@@ -42,12 +42,12 @@ const Product = () => {
       {error && <div>Error: {error.message}</div>}
       <div className="container mt-5">
         <div className="row">
+            <h1>{product.title}</h1>
+            <p className="lead text-dark">{product.price} kr</p>
           <div className="col-md-6">
             <img src={product.productImage} alt={product.title} className="img-fluid rounded-5 border" />
           </div>
           <div className="col-md-6">
-            <h1>{product.title}</h1>
-            <p className="lead">{product.price} kr</p>
             <p>{product.description}</p>
             <button className="btn primary" onClick={() => addToCart(loggeduser, product)}>
               Lägg till i kundvagn

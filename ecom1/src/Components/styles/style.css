@@ -61,27 +61,27 @@ body {
 
 /* Other existing styles remain unchanged... */
 h1 {
-  font-size: 4.210rem;
+  font-size: clamp(2.5rem, 5vw, 4.210rem);
 }
 
 h2 {
-  font-size: 3.158rem;
+  font-size: clamp(1.8rem, 4vw, 3.158rem);
 }
 
 h3 {
-  font-size: 2.369rem;
+  font-size: clamp(1.8rem, 3vw, 2.369rem);
 }
 
 h4 {
-  font-size: 1.777rem;
+  font-size: clamp(1.5rem, 2.5vw, 1.777rem);
 }
 
 h5 {
-  font-size: 1.333rem;
+  font-size: clamp(1.2rem, 2vw, 1.333rem);
 }
 
 small {
-  font-size: 0.750rem;
+  font-size: clamp(0.75rem, 1vw, 0.85rem);
 }
 
 /* ======= Product Card Styles ======= */
