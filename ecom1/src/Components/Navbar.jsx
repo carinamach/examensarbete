@@ -47,6 +47,7 @@ const Navbar = () => {
 
   const handleLogout = () => {
     auth.signOut().then(() => {
+      setCartCount(0);
       navigate('/login');
     });
   };
